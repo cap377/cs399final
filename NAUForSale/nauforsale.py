@@ -15,11 +15,26 @@
 # limitations under the License.
 #
 import webapp2
+from google.appengine.api import users
 
-class MainHandler(webapp2.RequestHandler):
+SPLASH_HTML = """\
+<html>
+	<b> This is a test of the splash page taking in html </b>
+</html>
+"""
+
+
+
+class SplashHandler(webapp2.RequestHandler):
+
     def get(self):
-        self.response.write('Hello world!')
+        self.response.write(SPLASH_HTML)
+
+class LoginHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.write('Login Page Here!')
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', SplashHandler),
+    ('/login', LoginHandler)
 ], debug=True)
