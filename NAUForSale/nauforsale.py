@@ -14,21 +14,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import webapp2
-from google.appengine.api import users
+import os
+import urllib
 
-SPLASH_HTML = """\
-<html>
-	<b> This is a test of the splash page taking in html </b>
-</html>
-"""
+from google.appengine.api import users
+from google.appengine.ext import ndb
+
+import jinja2
+import webapp2
+
+
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
+
+## This is an example of reading the html directly from this file
+##SPLASH_HTML = """\
+##<html>
+##	<b> This is a test of the splash page taking in html </b>
+##</html>
+##"""
 
 
 
 class SplashHandler(webapp2.RequestHandler):
 
     def get(self):
-        self.response.write(SPLASH_HTML)
+        # this response(SPLASH_HTML) will load the html directly
+        #self.response.write(SPLASH_HTML)
+        template_values = {}
+        template = JINJA_ENVIRONMENT.get_template('test.html')
+        self.response.write(template.render(template_values))
 
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
