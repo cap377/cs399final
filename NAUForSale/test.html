@@ -3,6 +3,18 @@
   		<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
 	</head>
 		<body>
+			<div>
+			 {% if logged_in %}
+			  {{ user.nickname }}
+			   {% else %}
+			   	<a href="/signup">
+			   		signup	
+			   	</a>
+			   	<a href="/login">
+			   		login	
+			   	</a>
+			  {% endif %} 
+			</div>
 			<p>This is a test. Please remain calm...</p>
 		</body>
 </html>
