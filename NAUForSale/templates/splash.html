@@ -13,6 +13,18 @@
 
 {% endblock %}	
 {% block info %}
+{% for p in posts %}<br>
+<p>Title: {{ p.title }}</p>
+<p>Description: {{ p.description }}</p>
+<p>Picture: {{ p.picture }} </p>
+<p>Contact Email: {{ p.contact_email }} </p>
+<p>Contact Phone: {{ p.contact_phone }} </p>
+<p>Category: {{ p.category }} </p>
+<p>Date Posted: {{ p.post_date }}</p>
+
+
+{% endfor %}
+
 <h3>Post Title</h3>
           <p>This is where we will list the post information, such as a picture, product description, and contact info.</p>
 	  <p>This will be pulled from model data with ajax.</p>
