@@ -15,18 +15,30 @@
 {% block info %}
 
 {% for p in posts %}
-{% if user == p.author %}
-<p>Title: {{ p.title }}</p>
-<p>Description: {{ p.description }}</p>
-<p>Picture: {{ p.picture }} </p>
-<p>Contact Email: {{ p.contact_email }} </p>
-<p>Contact Phone: {{ p.contact_phone }} </p>
-<p>Category: {{ p.category }} </p>
-<p>Date Posted: {{ p.post_date }}</p>
-<br>
-{% endif %}
-{% else %}
-<p> You have made no posts! </p>
+	{% if user == p.author %}
+			<h4>{{ p.title }}</h4>
+			<div class="row">
+				<div class="col-md-3">
+					{% if p.picture == "" %}
+						<img src="http://www2.psd100.com/ppp/2013/09/2601/Camera-icon-0926011829.png" alt="No Image" style="width:200px;height:200px">
+					{% else %}
+						<p>Picture: {{ p.picture }}</p>
+					{% endif %}
+				</div>
+				<div class="col-md-9">
+					<p>Description : {{ p.description }}<br>
+						Category: {{ p.category }}<br>
+						Contact Email: {{ p.contact_email }}<br>
+						{% if p.contact_phone == "" %}
+						{% else %}
+							Contact Phone: {{ p.contact_phone }}<br>
+						{% endif %}
+					Date Posted: {{ p.post_date }}</p>
+				</div>
+			</div>
+	{% else %}
+		<p> You have made no posts! </p>
+	{% endif %}
 {% endfor %}
 
 
@@ -34,4 +46,4 @@
 {% endblock %}
 
 
-</html>
+</html>	
