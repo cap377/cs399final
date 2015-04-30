@@ -23,3 +23,9 @@ class MyPostsPage(BaseHandler):
                                 })
 		else:
 			self.redirect(users.create_login_url(self.request.url))
+
+	def post(self):
+		key = self.request.get("key")
+		post = ndb.Key("Post", int(key)).get()
+		post.key.delete()
+		self.redirect("/")

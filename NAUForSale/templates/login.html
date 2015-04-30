@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+<html>
+{% block content %}
+
+{% endblock %}
+
+{% block info %}
+	<form method="post" action="/login" id="create">
+		<h2>Post Something</h2>
+		Author: {{ user }}<br>
+		<br>Title: <input type="text" name="title"></input>
+		<br>Category: <select type="select" name="category"> 
+			<option>Home, Garden & Tools</option>
+			<option>Beauty</option>
+			<option>Electronics & Computers</option></select>
+		<br>Picture: <input type="file" name="picture"></input>
+		<br>Description: <input type="text" name="description"></input>
+		<br>Price: <input type="text" name="price"></input>
+		<br>Contact Email: <input type="text" name="email"></input>
+		<br>Contact Phone: <input type="text" name="contact"></input>
+		<br><button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+	</form>
+{% endblock %}
+
+</html>
+

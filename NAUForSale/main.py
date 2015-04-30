@@ -17,4 +17,6 @@ app = webapp2.WSGIApplication([
     ('/logout', LogoutPage),
     ('/myPosts', MyPostsPage),
     ('/form', CreateFormPage)
+    #('/login', LoginPage)
+
 ], debug=True)
