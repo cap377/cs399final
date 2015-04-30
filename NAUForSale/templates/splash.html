@@ -21,14 +21,14 @@
 					{% endif %}
 				</div>
 				<div class="col-md-9">
-					<p>Description : {{ p.description }}<br>
-						Category: {{ p.category }}<br>
-						Contact Email: {{ p.contact_email }}<br>
+					<p><b>Description :</b> {{ p.description }}<br>
+						<b>Category:</b> {{ p.category }}<br>
+						<b>Contact Email:</b> {{ p.contact_email }}<br>
 						{% if p.contact_phone == "" %}
 						{% else %}
-							Contact Phone: {{ p.contact_phone }}<br>
+							<b>Contact Phone:</b> {{ p.contact_phone }}<br>
 						{% endif %}
-					Date Posted: {{ p.post_date }}</p>
+					<b>Date Posted:</b> {{ p.post_date }}</p>
 				</div>
 			</div>
 		{% endfor %}

@@ -1,49 +1,43 @@
 {% extends "base.html" %}
-
-
 <html>
-{% block content %}
-	<head>
-	</head>
+	{% block content %}
+		<head>
+		</head>
 		<title>{{title}}</title>
 		<body>
 			<h1>Welcome to Jack's List!</h1>
 			<p>View your posts below!</p>
 		</body>
-{% endblock %}	
-
-{% block info %}
-
-{% for p in posts %}
-	{% if user == p.author %}
-			<h4>{{ p.title }}</h4>
-			<div class="row">
-				<div class="col-md-3">
-					{% if p.picture == "" %}
-						<img src="http://www2.psd100.com/ppp/2013/09/2601/Camera-icon-0926011829.png" alt="No Image" style="width:200px;height:200px">
-					{% else %}
-						<p>Picture: {{ p.picture }}</p>
-					{% endif %}
-				</div>
-				<div class="col-md-9">
-					<p>Description : {{ p.description }}<br>
-						Category: {{ p.category }}<br>
-						Contact Email: {{ p.contact_email }}<br>
-						{% if p.contact_phone == "" %}
+	{% endblock %}
+	{% block info %}
+	{% set count = 0 %}
+		{% for p in posts %}
+			{% if user == p.author %}
+			{% set count=count+1 %}
+				<h4>{{ p.title }}</h4>
+				<div class="row">
+					<div class="col-md-3">
+						{% if p.picture == "" %}
+							<img src="http://www2.psd100.com/ppp/2013/09/2601/Camera-icon-0926011829.png" alt="No Image" style="width:200px;height:200px">
 						{% else %}
-							Contact Phone: {{ p.contact_phone }}<br>
+							<p>Picture: {{ p.picture }}</p>
 						{% endif %}
-					Date Posted: {{ p.post_date }}</p>
+					</div>
+					<div class="col-md-9">
+						<p><b>Description :</b> {{ p.description }}<br>
+							<b>Category:</b> {{ p.category }}<br>
+							<b>Contact Email:</b> {{ p.contact_email }}<br>
+							{% if p.contact_phone == "" %}
+							{% else %}
+								<b>Contact Phone:</b> {{ p.contact_phone }}<br>
+							{% endif %}
+						<b>Date Posted:</b> {{ p.post_date }}</p>
+					</div>
 				</div>
-			</div>
-	{% else %}
-		<p> You have made no posts! </p>
-	{% endif %}
-{% endfor %}
-
-
-
-{% endblock %}
-
-
-</html>	
+			{% endif %}
+		{% endfor %}
+		{% if count == 0 %}
+				<p> You have made no posts! </p>
+		{% endif %}
+	{% endblock %}
+</html>
