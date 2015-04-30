@@ -10,11 +10,16 @@ class MyPostsPage(BaseHandler):
 
 		user = users.get_current_user()
 		q = Post.query().fetch(100)
+		counter = 0
+                for post in q:
+                        if post.author == user:
+                                counter += 1
 
 		if user:
 			self.render("myPosts.html", {
                                 "posts": q,
-                                "user": user
+                                "user": user,
+                                "counter": counter
                                 })
 		else:
 			self.redirect(users.create_login_url(self.request.url))

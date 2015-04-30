@@ -10,10 +10,11 @@
 		</body>
 	{% endblock %}
 	{% block info %}
-	{% set count = 0 %}
+	{% if counter == 0 %}
+	<p>You have no posts.</p>
+	{% endif %}
 		{% for p in posts %}
 			{% if user == p.author %}
-			{% set count=count+1 %}
 				<h4>{{ p.title }}</h4>
 				<div class="row">
 					<div class="col-md-3">
@@ -36,8 +37,5 @@
 				</div>
 			{% endif %}
 		{% endfor %}
-		{% if count == 0 %}
-				<p> You have made no posts! </p>
-		{% endif %}
 	{% endblock %}
 </html>
