@@ -11,20 +11,30 @@
 	{% endblock %}
 	{% block info %}
 		{% for p in posts %}<br>
-			<p>Title: {{ p.title }}</p>
-			<p>Description: {{ p.description }}</p>
-			<p>Picture: {{ p.picture }} </p>
-			<p>Contact Email: {{ p.contact_email }} </p>
-			{% if p.contact_phone == "" %}
-			{% else %}
-			<p>Contact Phone: {{ p.contact_phone }} </p>
-			{% endif %}
-			<p>Category: {{ p.category }} </p>
-			<p>Date Posted: {{ p.post_date }}</p>
+			<h4>{{ p.title }}</h4>
+			<div class="row">
+				<div class="col-md-3">
+					{% if p.picture == "" %}
+						<img src="http://www2.psd100.com/ppp/2013/09/2601/Camera-icon-0926011829.png" alt="No Image" style="width:200px;height:200px">
+					{% else %}
+						<p>Picture: {{ p.picture }}</p>
+					{% endif %}
+				</div>
+				<div class="col-md-9">
+					<p>Description : {{ p.description }}<br>
+						Category: {{ p.category }}<br>
+						Contact Email: {{ p.contact_email }}<br>
+						{% if p.contact_phone == "" %}
+						{% else %}
+							Contact Phone: {{ p.contact_phone }}<br>
+						{% endif %}
+					Date Posted: {{ p.post_date }}</p>
+				</div>
+			</div>
 		{% endfor %}
-		<h3>Post Title</h3>
+		<!-- <h3>Post Title</h3>
 		<p>This is where we will list the post information, such as a picture, product description, and contact info.</p>
 		<p>This will be pulled from model data with ajax.</p>
-		<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
 	{% endblock %}
 </html>
