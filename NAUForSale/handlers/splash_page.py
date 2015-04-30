@@ -9,7 +9,7 @@ class SplashPage(BaseHandler):
 	def get(self):
 
 		user = users.get_current_user()
-		q = Post.query().fetch(100)
+		q = Post.query().order(-Post.post_date).fetch(100)
 		if user:
 			self.render("splash.html", {
 				"title": "Nau For Sale",

@@ -3,7 +3,7 @@ from google.appengine.ext import ndb
 class Post(ndb.Model):
     title = ndb.StringProperty(required=True)
     author = ndb.UserProperty(required=True)
-    post_date = ndb.DateProperty(auto_now=True)
+    post_date = ndb.DateTimeProperty(auto_now=True)
     description = ndb.TextProperty(required=True)
     price = ndb.StringProperty(required=True)
     picture = ndb.BlobProperty(default="")
