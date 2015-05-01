@@ -51,6 +51,11 @@ class CreateFormPage(BaseHandler):
 		post.description = self.request.get('description')
 		post.price = self.request.get('price')
 		post.category = self.request.get('category')
-		post.picture = self.request.get('picture')
+		if self.request.get('picture') == '':
+			self.response.out.write('No image')
+		else:
+			post.picture = self.request.get('picture')
+		
+
 		post.put()
 		self.redirect("/")
