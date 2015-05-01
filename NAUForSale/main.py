@@ -9,6 +9,7 @@ from handlers import LogoutPage
 from handlers import MyPostsPage
 from handlers import CreateFormPage
 from handlers import ImgServe
+from handlers import PostAjaxPage
 
 
 
@@ -18,6 +19,7 @@ app = webapp2.WSGIApplication([
     ('/logout', LogoutPage),
     ('/myPosts', MyPostsPage),
     ('/form', CreateFormPage),
-    ('/img_serve/([^/]+)', ImgServe)
+    ('/img_serve/([^/]+)', ImgServe),
+    ('/postajax', PostAjaxPage)
 
 ], debug=True)
