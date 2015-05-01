@@ -32,7 +32,8 @@
 							{% else %}
 								<b>Contact Phone:</b> {{ p.contact_phone }}<br>
 							{% endif %}
-						<b>Date Posted:</b> {{ p.post_date }}</p>
+						<b>Date Posted:</b> {{ p.post_date }}<br>
+						<b>Price: </b> {{ p.price }}</p>
 			<form method="post" action="">
 				<input type="hidden" name="key" value="{{p.key.id()}}" />
 				<button name="delete_post">Delete</button>
