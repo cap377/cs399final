@@ -7,15 +7,40 @@ from google.appengine.api import users
 from models import Post
 
 
+CATEGORIES = [
+    'Home, Garden & Tools',
+    'Books',
+    'Clothing, Shoes & Jewelry',
+    'Movies, Music & Games',
+    'Sports & Outdoors',
+    'Beauty',
+    'Electronics & Computers',
+    'Automotive',
+    'Pets',
+    'Free'
+]
+
 class CreateFormPage(BaseHandler):
 	def get(self):
-		user = users.get_current_user()
-		if user:
-			self.render("form.html", {'user': user.nickname()})
-		else:
-			self.redirect(users.create_login_url(self.request.url))
+	    user = users.get_current_user()
+	    if not user:
+	        self.redirect(users.create_login_url(self.request.url))
+	        return                 
+	    data = {'user': user.nickname(), 'categories': CATEGORIES}
+	    if self.request.get("key"):
+	        # Updating post
+	    	key = self.request.get("key")
+	        post = ndb.Key("Post", int(key)).get()
+	        if post:
+	        	data['post'] = post
+	    self.render("form.html", data)
+
 	def post(self):
-		post = Post()
+		if self.request.get("key"):
+			key = self.request.get("key")
+			post = ndb.Key("Post", int(key)).get()
+		else:
+			post = Post()
 		#if users.get_current_user():
 		#	post.author = Post(author = users.get_current_user())
 		user = users.get_current_user()

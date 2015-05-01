@@ -13,25 +13,28 @@
 		<form method="post" action="/form" id="create">
 			<h2>Post Something</h2>
 			Author: {{ user }}<br>
-			<br>Title: <input type="text" name="title" required></input>
-			<br>Category: <select type="select" name="category" required>
+			<br>Title: <input type="text" name="title" required {% if post and post.title %}value="{{ post.title }}"{% endif %}></input>
+			<br>Category: 
+
+			<select type="select" name="category" required>
 				<option></option>
-				<option>Home, Garden & Tools</option>
-				<option>Books</option>
-				<option>Clothing, Shoes & Jewelry</option>
-				<option>Movies, Music & Games</option>
-				<option>Sports & Outdoors</option>
-				<option>Beauty</option>
-				<option>Electronics & Computers</option>
-				<option>Automotive</option>
-				<option>Pets</option>
-				<option>Free</option></select>
-				<br>Picture: <input type="file" name="picture"></input>
-				<br>Description: <input type="text" name="description" required></input>
-				<br>Price: <input type="text" name="price" required></input>
-				<br>Contact Email: <input type="text" name="email" required></input>
-				<br>Contact Phone: <input type="text" name="contact"></input>
-				<br><button class="btn btn-primary" type="submit" value="Submit">Submit</button>
-			</form>
-		{% endblock %}
-	</html>
+				{% for category in categories %}
+    			<option value="{{ category }}" {% if post and post.category and post.category == category %}SELECTED{% endif %}>{{ category }}</option>
+				{% endfor %}
+			</select>
+
+
+			<br>Picture: <input type="file" name="picture"></input>
+
+			<br>Description: <input type="text" name="description" required {% if post and post.description %}value="{{ post.description }}"{% endif %} ></input>
+
+			<br>Price: <input type="text" name="price" required {% if post and post.price %}value="{{ post.price }}"{% endif %} ></input>
+
+			<br>Contact Email: <input type="text" name="email" required {% if post and post.contact_email %}value="{{ post.contact_email }}"{% endif %} ></input>
+
+			<br>Contact Phone: <input type="text" name="contact" {% if post and post.contact_phone %}value="{{ post.contact_phone }}"{% endif %} ></input>
+			{% if post %}<input type="hidden" name="key" value="{{ post.key.id() }}">{% endif %}
+			<br><button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+		</form>
+	{% endblock %}
+</html>
