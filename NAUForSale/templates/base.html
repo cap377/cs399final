@@ -92,7 +92,19 @@ body {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
+    <script language="JavaScript" type="text/javascript">
+      function updatePost(){
+        $.ajax({
+          url: "/postajax",
+          cache: false,
+          success: function(frag){
+              $("div.postcontent").html(frag);
+          }
+        });
+        setTimeout('updatePost()', 4000);
+      }
+      updatePost();
+  </script>
 
 
 
