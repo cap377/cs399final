@@ -21,7 +21,7 @@
 						{% if p.picture == "" %}
 							<img src="http://www2.psd100.com/ppp/2013/09/2601/Camera-icon-0926011829.png" alt="No Image" style="width:200px;height:200px">
 						{% else %}
-							<p>Picture: {{ p.picture }}</p>
+							<img src="{{ p.picture_url}}" style="width:200px;height:200px"/>
 						{% endif %}
 					</div>
 					<div class="col-md-9">

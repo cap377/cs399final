@@ -11,3 +11,7 @@ class Post(ndb.Model):
     contact_phone = ndb.StringProperty(default="")
     category = ndb.StringProperty(choices=('Home, Garden & Tools', 'Beauty', 'Electronics & Computers', 'Clothing, Shoes & Jewelry',
                                            'Books', 'Movies, Music & Games', 'Sports & Outdoors', 'Automotive', 'Pets', 'Free'), required=True)
+
+    @property
+    def picture_url(self):
+        return "/img_serve/{}".format(self.key.id())

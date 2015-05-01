@@ -10,7 +10,7 @@
 		</body>
 	{% endblock %}
 	{% block info %}
-		<form method="post" action="/form" id="create">
+		<form method="post" action="/form" id="create" enctype="multipart/form-data">
 			<h2>Post Something</h2>
 			Author: {{ user }}<br>
 			<br>Title: <input type="text" name="title" required {% if post and post.title %}value="{{ post.title }}"{% endif %}></input>
